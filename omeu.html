@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Waves Calçados - Loja Online</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="omeu.css">
+</head>
+  
+<body class="d-flex flex-column min-vh-100">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<style>
+    #carouselExample {
+    max-width: 800px; /* Define uma largura máxima */
+    margin: 0 auto; /* Centraliza o carrossel */
+    border-radius: 10px; /* Bordas arredondadas */
+    overflow: hidden; /* Evita conteúdo exceder o limite do carrossel */
+}
+</style>
+
+<header class="bg-dark text-white py-3">
+    
+    <div class="container d-flex justify-content-between align-items-center">
+        <h1 class="h4 mb-0">TeehWave</h1>
+        <div class="d-flex align-items-center">
+            <!--<input type="text" class="form-control me-2" placeholder="Buscar..." aria-label="Campo de busca">-->
+            <input type="text" id="searchInput" class="form-control me-2" placeholder="Buscar..." aria-label="Campo de busca">
+            <button class="btn btn-light me-3">Buscar</button>
+            <button class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#cartModal">
+                Carrinho (<span id="cartCount">0</span>)
+            </button>
+        </div>
+        
+    </div>
+</header>
+
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" id="linHome" href="#">Home</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container my-4">
+    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="3000">
+                <img src="https://www.designi.com.br/images/preview/10385235.jpg" class="d-block w-100" alt="Imagem 1">
+            </div>
+            <div class="carousel-item" data-bs-interval="3000">
+                <img src="https://www.designi.com.br/images/preview/10049840.jpg" class="d-block w-100" alt="Imagem 2">
+            </div>
+            <div class="carousel-item" data-bs-interval="3000">
+                <img src="https://www.designi.com.br/images/preview/10385232.jpg" class="d-block w-100" alt="Imagem 3">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+<!-- Main Content -->
+<div class="container my-4 flex-grow-1">
+        <!-- Sidebar -->
+        <div class="col-md-3 mb-4">
+            <h5>Categorias</h5>
+            <ul class="list-group mb-3">
+                <li class="list-group-item"><input type="checkbox" value="placa-de-video"> Placas de Vídeo</li>
+                <li class="list-group-item"><input type="checkbox" value="linha-ultra-premium"> Linha Ultra Premium</li>
+                <li class="list-group-item"><input type="checkbox" value="queima-de-estoque"> Queima de Estoque</li>
+            </ul>
+        </div>
+    <div class="row">
+
+        <!-- Produtos -->
+        <div class="col-md-4 col-sm-6 produto" data-category="placa-de-video">
+        
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHkAUwTDSaSyh7JrCryZOJudR_6ng0ik4mNA&s" class="card-img-top" alt="Produto 1">
+                <div class="card-body">
+                    <h5 class="card-title">Placa De Vídeo Gigabyte AMD Radeon RX 7600</h5>
+                    <p class="card-text"><strong>R$ 2.099,99</strong><span class="text-muted"> no PIX com 15% desconto</span></p>
+                    <p class="text-muted">Frete grátis</p>
+                    <a href="#" class="btn btn-primary add-to-cart" data-name="Placa De Vídeo Gigabyte AMD Radeon RX 7600" data-price="2099.99">Comprar</a>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="col-md-4 col-sm-6 produto" data-category="linha-ultra-premium">
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuPKRkpaL5EYZdSH03uQm3ioDKtIwFw8URcA&s" class="card-img-top" alt="Produto 2">
+                <div class="card-body">
+                    <h5 class="card-title">Placa Mãe ASUS ROG Maximus Z890 Apex</h5>
+                    <p class="card-text"><strong>R$ 9.999,99</strong> <span class="text-muted">no PIX com 15% desconto</span></p>
+                    <p class="text-muted">Frete grátis</p>
+                    <a href="#" class="btn btn-primary add-to-cart" data-name="Placa Mãe ASUS ROG Maximus Z890 Apex" data-price="9999.99">Comprar</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-6 produto" data-category="linha-ultra-premium">
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7wsjvLAyKmQWRuRQfzutlV5dG5aJ7yZA0_w&s" class="card-img-top" alt="Produto 2">
+                <div class="card-body">
+                    <h5 class="card-title">Processador AMD Ryzen 9 9950X, 4.3GHz (5.7GHz Turbo), 16-Cores 32-Threads, AM5, Sem Cooler, 100-100001277WOF</h5>
+                    <p class="card-text"><strong>R$ 6.000,90</strong> <span class="text-muted">no PIX com 15% desconto</span></p>
+                    <p class="text-muted">Frete grátis</p>
+                    <a href="#" class="btn btn-primary add-to-cart" data-name="Placa Mãe ASUS ROG Maximus Z890 Apex" data-price="6000.90">Comprar</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-6 produto" data-category="queima-de-estoque">
+            <div class="card">
+                <img src="https://m.media-amazon.com/images/I/71VAf1UbEML.__AC_SY300_SX300_QL70_ML2_.jpg" class="card-img-top" alt="Produto 2">
+                <div class="card-body">
+                    <h5 class="card-title">Placa Mãe ASRock B550M Steel Legend, Chipset B550, AMD AM4, MATX, DDR4</h5>
+                    <p class="card-text"><strong>R$ 1.694,90</strong> <span class="text-muted">no PIX com 30% desconto</span></p>
+                    <p class="text-muted">Frete grátis</p>
+                    <a href="#" class="btn btn-primary add-to-cart" data-name="Placa Mãe ASRock B550M Steel Legend" data-price="1694.90">Comprar</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-6 produto" data-category="linha-ultra-premium">
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2p-ToNxZm68k5Q1Hai-VOMYqR90_og3OeJA&s" class="card-img-top" alt="Jordan Travis Scott Azul" class="card-img-top" alt="Produto 2">
+                <div class="card-body">
+                    <h5 class="card-title">Processador Intel Core i9 14900K, 3.6 GHz (6.0GHz Turbo), 14ª Geração, 24-Cores 32-Threads, LGA 1700, BX8071514900K</h5>
+                    <p class="card-text"><strong>R$ 7.099,90</strong> <span class="text-muted">no PIX com 15% desconto</span></p>
+                    <p class="text-muted">Frete grátis</p>
+                    <a href="#" class="btn btn-primary add-to-cart" data-name="Processador Intel Core i9 14900K" data-price="7099.90">Comprar</a>
+                </div>
+            </div>
+        </div> 
+
+        <div class="col-md-4 col-sm-6 produto" data-category="placa-de-video,queima-de-estoque">            
+                <div class="card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQREVZ_A4Xv1C8xvQyNHpt2spGTH_Ru1B_xxw&s" class="card-img-top" alt="Produto 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Placa de Video Galax GeForce RTX 4060 1-Click OC 1X, 8GB, GDDR6, 128-bit, 46NSL8MD8ZOC</h5>
+                        <p class="card-text"><strong>R$  2.099,99</strong> <span class="text-muted">no PIX com 32% desconto</span></p>
+                        <p class="text-muted">Frete grátis</p>
+                        <a href="#" class="btn btn-primary add-to-cart" data-name="Placa Mãe ASUS ROG Maximus Z890 Apex" data-price=" 2099.99">Comprar</a>
+                    </div>
+                </div> 
+        </div>
+    </div>
+</div>
+
+<!-- Modal do Carrinho -->
+<div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cartModalLabel">Carrinho de Compras</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <ul id="cartItems" class="list-group"></ul>
+                <p class="mt-3"><strong>Total:</strong> R$ <span id="cartTotal">0.00</span></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary">Finalizar Compra</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="bg-dark text-white text-center py-3 mt-auto">
+    <p>&copy; 2024 TeehWave. Todos os direitos reservados.</p>
+</footer>
+
+<script src="omeu.js"></script>
+</body>
+</html>

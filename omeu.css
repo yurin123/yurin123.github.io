@@ -1,0 +1,92 @@
+/* Estilo geral */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.card img {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Faz com que o conteúdo ocupe todo o espaço disponível */
+    justify-content: space-between;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Garante que o card tenha altura igual */
+    min-height: 350px; /* Garante que o card tenha altura mínima */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 1rem;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.container {
+    margin-bottom: 70px; /* Para garantir que o conteúdo não sobreponha o footer */
+}
+
+/* Estilo do carrossel */
+.custom-carousel {
+    max-width: 10%; /* Ajuste a largura máxima do carrossel */
+    margin: 0 auto; /* Centraliza o carrossel na tela */
+}
+
+.custom-carousel .carousel-inner .carousel-item img {
+    width: 100%; /* Faz a imagem ocupar toda a largura do carrossel */
+    height: 60px; /* Ajuste a altura da imagem */
+    object-fit: cover; /* Garante que a imagem se ajuste sem distorcer */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .col-md-4 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    .col-md-3, .col-md-9 {
+        max-width: 100%;
+        flex: 0 0 100%;
+    }
+
+    .form-control {
+        width: 80%;
+    }
+
+    .navbar .nav-item {
+        margin-bottom: 10px;
+    }
+
+    /* Ajuste do carrossel em telas pequenas */
+    .custom-carousel {
+        max-width: 100%; /* O carrossel ocupa 100% da largura em dispositivos menores */
+    }
+
+    .custom-carousel .carousel-inner .carousel-item img {
+        height: 150px; /* Ajuste a altura para telas pequenas */
+    }
+}
