@@ -4,97 +4,54 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Nosso Diário — Mel</title>
-<style>
+
+<style>  
   :root{
-    --pink-1: #ffe6eb;
-    --pink-2: #ffd0df;
-    --accent: #ff4d6d;
-    --glass: rgba(255,255,255,0.86);
+    --pink-1: #fff0f4;
+    --pink-2: #ffe6ee;
+    --accent: #ff6b8a;
+    --glass: rgba(255,255,255,0.88);
   }
   *{box-sizing:border-box}
-  html,body{height:100%;}
+  html,body{height:100%;margin:0;padding:0;}
   body{
-    margin:0;
     padding:20px 16px;
     font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
     background: linear-gradient(180deg,var(--pink-1),var(--pink-2));
     color:#333;
-    -webkit-font-smoothing:antialiased;
     display:flex;
+    align-items:flex-start;
     justify-content:center;
-    align-items:flex-start; /* conteúdo começa do topo */
     min-height:100vh;
   }
-  <button id="startAudio" style="
-  position:fixed;
-  top:20px;
-  left:50%;
-  transform:translateX(-50%);
-  z-index:9999;
-  background:#ff4d6d;
-  color:white;
-  padding:12px 22px;
-  border:none;
-  border-radius:12px;
-  font-size:16px;
-  font-weight:600;
-  box-shadow:0 4px 14px rgba(0,0,0,0.15);
-  cursor:pointer;
-">
-Clique aqui para iniciar ❤️
-</button>
+
   .wrap{
-    width:100%;
-    max-width:720px;
-    position:relative;
-    border-radius:18px;
-    padding:18px;
-    box-shadow:0 10px 40px rgba(0,0,0,0.08);
-    background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.55));
+    width:100%;max-width:720px;position:relative;border-radius:18px;padding:18px;
+    box-shadow:0 10px 40px rgba(0,0,0,0.06);
+    background: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.6));
     overflow:hidden;
   }
-  /* hearts background */
+
   .bg-hearts{position:absolute;inset:0;pointer-events:none;}
-  .bg-hearts span{position:absolute;font-size:28px;opacity:0.18;animation:floatUp 8s linear infinite;}
-  @keyframes floatUp{0%{transform:translateY(110% ) scale(0.6);opacity:0}10%{opacity:1}100%{transform:translateY(-30%) scale(1.15);opacity:0}}
+  .bg-hearts span{position:absolute;font-size:28px;opacity:0.14;animation:floatUp 8s linear infinite;}
+  @keyframes floatUp{
+    0%{transform:translateY(110%) scale(0.6);opacity:0}
+    10%{opacity:1}
+    100%{transform:translateY(-30%) scale(1.15);opacity:0}
+  }
 
   .content{position:relative;z-index:6;display:flex;flex-direction:column;gap:14px;align-items:center;padding-bottom:12px}
-  .photo{width:86%;max-width:340px;border-radius:14px;border:3px solid var(--accent);box-shadow:0 8px 20px rgba(0,0,0,0.07);}
-  .message{
-    width:92%;max-width:640px;background:var(--glass);padding:12px 14px;border-radius:12px;font-size:16px;line-height:1.4;box-shadow:0 6px 18px rgba(0,0,0,0.04);
-  }
+  .photo{width:86%;max-width:340px;border-radius:14px;border:3px solid var(--accent);box-shadow:0 8px 20px rgba(0,0,0,0.05);} 
+
+  .message{width:92%;max-width:640px;background:var(--glass);padding:12px 14px;border-radius:12px;font-size:16px;line-height:1.4;box-shadow:0 6px 18px rgba(0,0,0,0.04);} 
   .message.small{font-size:15px}
 
-  /* audio controls */
-  .audio-controls{display:flex;gap:10px;align-items:center;margin-top:6px}
-  .play-btn{background:var(--accent);border:none;color:white;padding:8px 12px;border-radius:999px;font-weight:600;cursor:pointer;box-shadow:0 6px 18px rgba(255,77,109,0.18)}
-  .play-btn.paused{background:transparent;color:var(--accent);border:2px solid var(--accent)}
-  .audio-label{font-size:14px;color:#444}
-
-  /* proposal (final) */
-  .proposal{
-    margin-top:6px;padding:16px;border-radius:14px;display:flex;flex-direction:column;align-items:center;gap:8px;
-    transform:scale(0.92);opacity:0;transition:all 600ms cubic-bezier(.2,.9,.3,1);border:2px dashed rgba(255,77,109,0.12);
-    background:linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,246,247,0.9));
+  .final-text{
+    margin-top:20px;font-size:20px;font-weight:700;text-align:center;color:#ff2f63;
+    padding:18px 14px;border-radius:14px;background:rgba(255,255,255,0.9);
+    box-shadow:0 10px 30px rgba(255,50,90,0.08);
   }
-  .proposal.show{opacity:1;transform:scale(1);box-shadow:0 18px 40px rgba(255,77,109,0.06)}
-  .proposal h2{margin:0;font-size:20px}
-  .big-love{font-size:18px;font-weight:700;letter-spacing:0.4px}
 
-  /* heartbeat */
-  .heartbeat{display:inline-block;transform-origin:center center}
-  .heartbeat.beat{animation:beat 1s infinite}
-  @keyframes beat{0%{transform:scale(1)}30%{transform:scale(1.12)}60%{transform:scale(0.98)}100%{transform:scale(1)}}
-
-  /* sparkle */
-  .sparkles{position:absolute;inset:auto 16px 16px auto;width:80px;height:80px;pointer-events:none}
-  .sparkles .s{position:absolute;width:6px;height:6px;border-radius:2px;background:linear-gradient(180deg,#fff,#ffd4e0);opacity:0;transform:translateY(10px);animation:spark 1400ms linear infinite}
-  .sparkles .s:nth-child(1){left:12px;top:8px;animation-delay:0s}
-  .sparkles .s:nth-child(2){left:44px;top:18px;animation-delay:0.14s}
-  .sparkles .s:nth-child(3){left:22px;top:44px;animation-delay:0.28s}
-  @keyframes spark{0%{opacity:0;transform:translateY(6px) scale(0.6)}50%{opacity:1;transform:translateY(-6px) scale(1.1)}100%{opacity:0;transform:translateY(-18px) scale(0.8)}}
-
-  /* responsive */
   @media(min-width:900px){
     .content{flex-direction:row;flex-wrap:wrap;gap:18px;align-items:flex-start}
     .photo{width:220px}
@@ -102,6 +59,7 @@ Clique aqui para iniciar ❤️
   }
 </style>
 </head>
+
 <body>
   <div class="wrap">
     <div class="bg-hearts" aria-hidden>
@@ -113,124 +71,29 @@ Clique aqui para iniciar ❤️
       <span style="left:84%;animation-delay:3.2s;">❤</span>
     </div>
 
+    <!-- PLAY DA MÚSICA NO COMEÇO -->
+    <div style="width:100%;margin:0 0 18px 0;">
+      <iframe width="100%" height="120" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/joao-pedro-magalhaes-lisboa/afrodite-delacruz-e-iza-prod&color=%23ff4d6d"></iframe>
+    </div>
+
     <div class="content">
-      <img src="https://i.imgur.com/wi4r1ZJ.jpeg" alt="Nossa foto 1" class="photo">
+      <img src="https://i.imgur.com/wi4r1ZJ.jpeg" class="photo">
       <div class="message small">acho que foi o dia que parei de ter medo e comecei a correr atrás do meu sonho 💖 e comecei a deixar transparente que queria vc ... quem sabe o início da melhor história da minha vida❤️‍🔥</div>
 
-      <img src="https://i.imgur.com/A1y3x54.jpeg" alt="Nossa foto 2" class="photo">
-      <div class="message">❤Oi, princesa! Esta é uma atualização do nosso site, que se tornou quase um diário nosso. Um momento muito marcante, em que você se interessou em tirar uma foto meio que como casal. Fui percebendo que podia existir algo mais profundo entre nós. Obs: estava mais que perfeita nesse dia, sempre te sacando MUITO GOSTOSA 🤌❤</div>
+      <img src="https://i.imgur.com/A1y3x54.jpeg" class="photo">
+      <div class="message">❤Oiii princesa, atualização do nosso site quase um diário nosso!!! Um momento muito marcante, onde vc se interessou em tirar uma foto meio que como casal... daí percebi que talvez existisse algo muito mais profundo entre nós. E sim: você tava simplesmente perfeita esse dia, MUITO gostosa 🤌❤</div>
 
-      <img src="https://i.imgur.com/9gy4yzu.jpeg" alt="Nossa foto 3" class="photo">
-      <div class="message">Maresia!!!! Essa foto tirada lá, registrada uma das viagens mais importantes da minha vida, é uma das melhores de todas. Passar aqueles dias viajando não tem preço. Estar com você é sempre muito especial e maravilhoso. Realmente, viajar com você é minha terapia. Ali em Maresia, marcou muito, porque foi ali que nos permitimos um ao outro e foi com uma conexão surreal.</div>
+      <img src="https://i.imgur.com/9gy4yzu.jpeg" class="photo">
+      <div class="message">Maresias!!! Uma das viagens mais especiais da minha vida. Cada segundo contigo lá foi leve, marcante e inesquecível. Você transforma qualquer lugar num destino perfeito.</div>
 
-      <img src="https://i.imgur.com/R5DVVME.jpeg" alt="Nossa foto 4" class="photo">
-      <div class="message">Venho aqui, minha princesa, com a maior transparência do mundo, falar que eu te amo do fundo do meu coração e que sempre apoiarei em tudo e serei seu protetor, amigo e fiel parceiro pelo resto de nossa vida. Amo seu jeito por inteiro. Como é carinhosa, esforçada, cuidadosa, cheirosa e gostosa, pela atenção que você dá à família, como faz todo mundo rir à sua volta, a paz e leveza que você me traz, como já disse a você. E me sinto à vontade para ser quem sou e amo conviver com você, só que agora de maneira diferente!</div>
+      <img src="https://i.imgur.com/R5DVVME.jpeg" class="photo">
+      <div class="message">Vim aqui com a maior transparência do mundo te dizer que eu te amo, de verdade, lá do fundo. E que eu sempre vou te apoiar, te cuidar e te escolher todos os dias...</div>
 
-      <!-- audio player -->
-      <div style="width:100%;display:flex;flex-direction:column;align-items:center;margin-top:6px">
-        <div class="audio-controls">
-          <button id="playBtn" class="play-btn">Play • Afrodite — Delacruz</button>
-          <div class="audio-label">Toque para ativar áudio (recomendado no celular)</div>
-        </div>
-        <!-- Replace AUDIO_SRC with a valid MP3 file URL or use a local file. Many browsers block autoplay with sound; the button will ensure playback on mobile. -->
-        <audio id="audio" src="AUDIO_SRC_HERE.mp3" loop preload="metadata"></audio>
-      </div>
+      <!-- PEDIDO FINAL -->
+      <div class="final-text">💖 MEL, VOCÊ QUER NAMORAR COMIGO? 💖<br><br>
+      "Porque desde o dia que você entrou na minha vida, tudo ficou mais leve… e eu só quero continuar caminhando lado a lado com você, construindo o melhor capítulo da nossa história."</div>
 
-      <!-- proposal (appears with animation) -->
-      <div id="proposal" class="proposal" aria-live="polite">
-        <h2 class="big-love">💖 <span class="heartbeat" id="heartText">MACEDO MEL</span> QUER NAMORAR COMIGO 💖</h2>
-        <div style="font-size:14px;color:#555">Eu te amo do fundo do meu coração. Sempre vou te apoiar, proteger e ser seu parceiro fiel — pra sempre.</div>
-      </div>
-
-    </div>
-
-    <!-- sparkles used when proposal appears -->
-    <div class="sparkles" id="sparkles" aria-hidden>
-      <div class="s"></div>
-      <div class="s"></div>
-      <div class="s"></div>
     </div>
   </div>
-
-<script>
-  const audio = document.getElementById('audio');
-  const playBtn = document.getElementById('playBtn');
-  let isPlaying = false;
-
-  // Try to autoplay silently (most browsers block autoplay with sound)
-  window.addEventListener('load', async ()=>{
-    try{
-      audio.volume = 0.9;
-      await audio.play();
-      isPlaying = true;
-      playBtn.textContent = 'Pause • Afrodite — Delacruz';
-      playBtn.classList.remove('paused');
-    }catch(e){
-      // Autoplay failed: user interaction required. Button will handle playback.
-      playBtn.classList.add('paused');
-    }
-  });
-
-  playBtn.addEventListener('click', ()=>{
-    if(!isPlaying){
-      audio.play();
-      isPlaying = true;
-      playBtn.textContent = 'Pause • Afrodite — Delacruz';
-      playBtn.classList.remove('paused');
-    }else{
-      audio.pause();
-      isPlaying = false;
-      playBtn.textContent = 'Play • Afrodite — Delacruz';
-      playBtn.classList.add('paused');
-    }
-  });
-
-  // Show proposal with sparkle + heartbeat after a short delay
-  const proposal = document.getElementById('proposal');
-  const heartText = document.getElementById('heartText');
-  const sparkles = document.getElementById('sparkles');
-
-  function revealProposal(){
-    proposal.classList.add('show');
-    heartText.classList.add('beat');
-    // sparkle moment: briefly increase opacity
-    sparkles.style.opacity = 1;
-    setTimeout(()=>{sparkles.style.opacity = 0.9},10);
-    setTimeout(()=>{sparkles.style.opacity = 0},2400);
-  }
-
-  // Delay so messages are seen first. You can change the delay (ms) below.
-  setTimeout(revealProposal, 2200);
-
-  // Helpful: if user scrolls or taps the page, ensure audio plays (mobile unlock)
-  function unlockAudio(){ if(audio.paused){ audio.play().catch(()=>{}); isPlaying=true; playBtn.textContent='Pause • Afrodite — Delacruz'; playBtn.classList.remove('paused'); } window.removeEventListener('touchstart', unlockAudio); window.removeEventListener('click', unlockAudio)}
-  window.addEventListener('touchstart', unlockAudio,{passive:true});
-  window.addEventListener('click', unlockAudio,{passive:true});
-
-  // Accessibility: keyboard toggle
-  playBtn.addEventListener('keyup', (e)=>{ if(e.key === 'Enter' || e.key === ' ') playBtn.click(); });
-
-</script>
-  <script>
-  const startAudioBtn = document.getElementById('startAudio');
-
-  startAudioBtn.addEventListener('click', () => {
-    audio.play().then(() => {
-      isPlaying = true;
-      playBtn.textContent = 'Pause • Afrodite — Delacruz';
-      playBtn.classList.remove('paused');
-      startAudioBtn.remove(); // remove o botão da tela
-    }).catch(() => {
-      alert("Toque novamente para liberar o áudio 💖");
-    });
-  });
-</script>
-
 </body>
-  
 </html>
-
-
-
-
-
