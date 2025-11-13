@@ -52,11 +52,24 @@
     box-shadow:0 10px 30px rgba(255,50,90,0.08);
   }
 
-  @media(min-width:900px){
-    .content{flex-direction:row;flex-wrap:wrap;gap:18px;align-items:flex-start}
-    .photo{width:220px}
-    .message{width:calc(100% - 260px);max-width:420px}
+  /* REVEAL EFFECT */
+  .reveal-btn{
+    background:var(--accent);
+    border:none;color:white;font-size:24px;
+    padding:12px 14px;border-radius:50%;cursor:pointer;
+    margin-bottom:10px;
+    box-shadow:0 0 18px rgba(255,0,80,0.45);
+    animation:pulse 1.6s infinite ease-in-out;
   }
+  @keyframes pulse{
+    0%{transform:scale(1)}50%{transform:scale(1.18)}100%{transform:scale(1)}
+  }
+
+  .hidden-photo{opacity:0;transform:scale(.85) translateY(20px);filter:blur(6px);transition:.9s ease;}
+  .show-photo{opacity:1;transform:scale(1) translateY(0);filter:blur(0);}  
+
+  .hidden-text{opacity:0;transform:translateY(20px);transition:.9s ease .1s;}
+  .show-text{opacity:1;transform:translateY(0);}  
 </style>
 </head>
 
@@ -71,23 +84,32 @@
       <span style="left:84%;animation-delay:3.2s;">❤</span>
     </div>
 
-    <!-- PLAY DA MÚSICA NO COMEÇO -->
+    <!-- PLAY DA MÚSICA -->
     <div style="width:100%;margin:0 0 18px 0;">
       <iframe width="100%" height="120" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/joao-pedro-magalhaes-lisboa/afrodite-delacruz-e-iza-prod&color=%23ff4d6d"></iframe>
     </div>
 
     <div class="content">
-      <img src="https://i.imgur.com/wi4r1ZJ.jpeg" class="photo">
-      <div class="message small">acho que foi o dia que parei de ter medo e comecei a correr atrás do meu sonho 💖 e comecei a deixar transparente que queria vc ... quem sabe o início da melhor história da minha vida❤️‍🔥</div>
 
-      <img src="https://i.imgur.com/A1y3x54.jpeg" class="photo">
-      <div class="message">❤Oiii princesa, atualização do nosso site quase um diário nosso!!! Um momento muito marcante, onde vc se interessou em tirar uma foto meio que como casal... daí percebi que talvez existisse algo muito mais profundo entre nós. E sim: você tava simplesmente perfeita esse dia, MUITO gostosa 🤌❤</div>
+      <!-- FOTO 1 REVEAL -->
+      <button class="reveal-btn" onclick="reveal(this,'p1','t1')">❤</button>
+      <img id="p1" src="https://i.imgur.com/wi4r1ZJ.jpeg" class="photo hidden-photo">
+      <div id="t1" class="message small hidden-text">acho que foi o dia que parei de ter medo e comecei a correr atrás do meu sonho 💖 e comecei a deixar transparente que queria vc ... quem sabe o início da melhor história da minha vida❤️‍🔥</div>
 
-      <img src="https://i.imgur.com/9gy4yzu.jpeg" class="photo">
-      <div class="message">Maresias!!! Uma das viagens mais especiais da minha vida. Cada segundo contigo lá foi leve, marcante e inesquecível. Você transforma qualquer lugar num destino perfeito.</div>
+      <!-- FOTO 2 REVEAL -->
+      <button class="reveal-btn" onclick="reveal(this,'p2','t2')">❤</button>
+      <img id="p2" src="https://i.imgur.com/A1y3x54.jpeg" class="photo hidden-photo">
+      <div id="t2" class="message hidden-text">❤Oiii princesa, atualização do nosso site quase um diário nosso!!! Um momento muito marcante, onde vc se interessou em tirar uma foto meio que como casal... daí percebi que talvez existisse algo muito mais profundo entre nós. E sim: você tava simplesmente perfeita esse dia, MUITO gostosa 🤌❤</div>
 
-      <img src="https://i.imgur.com/R5DVVME.jpeg" class="photo">
-      <div class="message">Vim aqui com a maior transparência do mundo te dizer que eu te amo, de verdade, lá do fundo. E que eu sempre vou te apoiar, te cuidar e te escolher todos os dias...</div>
+      <!-- FOTO 3 REVEAL -->
+      <button class="reveal-btn" onclick="reveal(this,'p3','t3')">❤</button>
+      <img id="p3" src="https://i.imgur.com/9gy4yzu.jpeg" class="photo hidden-photo">
+      <div id="t3" class="message hidden-text">Maresias!!! Uma das viagens mais especiais da minha vida. Cada segundo contigo lá foi leve, marcante e inesquecível. Você transforma qualquer lugar num destino perfeito.</div>
+
+      <!-- FOTO 4 REVEAL -->
+      <button class="reveal-btn" onclick="reveal(this,'p4','t4')">❤</button>
+      <img id="p4" src="https://i.imgur.com/R5DVVME.jpeg" class="photo hidden-photo">
+      <div id="t4" class="message hidden-text">Vim aqui com a maior transparência do mundo te dizer que eu te amo, de verdade, lá do fundo. E que eu sempre vou te apoiar, te cuidar e te escolher todos os dias...</div>
 
       <!-- PEDIDO FINAL -->
       <div class="final-text">💖 MEL, VOCÊ QUER NAMORAR COMIGO? 💖<br><br>
@@ -95,5 +117,18 @@
 
     </div>
   </div>
-</body>
-</html>
+
+<script>
+function reveal(btn,imgId,textId){
+  const img = document.getElementById(imgId);
+  const text = document.getElementById(textId);
+
+  img.classList.add('show-photo');
+  text.classList.add('show-text');
+
+  btn.style.pointerEvents = 'none';
+  btn.style.opacity = '0';
+  btn.style.transform = 'scale(0.6)';
+  btn.style.transition = '.4s ease';
+}
+</script>
