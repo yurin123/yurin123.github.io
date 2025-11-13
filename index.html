@@ -25,6 +25,24 @@
     align-items:flex-start; /* conteúdo começa do topo */
     min-height:100vh;
   }
+  <button id="startAudio" style="
+  position:fixed;
+  top:20px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:9999;
+  background:#ff4d6d;
+  color:white;
+  padding:12px 22px;
+  border:none;
+  border-radius:12px;
+  font-size:16px;
+  font-weight:600;
+  box-shadow:0 4px 14px rgba(0,0,0,0.15);
+  cursor:pointer;
+">
+Clique aqui para iniciar ❤️
+</button>
   .wrap{
     width:100%;
     max-width:720px;
@@ -193,8 +211,25 @@
   playBtn.addEventListener('keyup', (e)=>{ if(e.key === 'Enter' || e.key === ' ') playBtn.click(); });
 
 </script>
+  <script>
+  const startAudioBtn = document.getElementById('startAudio');
+
+  startAudioBtn.addEventListener('click', () => {
+    audio.play().then(() => {
+      isPlaying = true;
+      playBtn.textContent = 'Pause • Afrodite — Delacruz';
+      playBtn.classList.remove('paused');
+      startAudioBtn.remove(); // remove o botão da tela
+    }).catch(() => {
+      alert("Toque novamente para liberar o áudio 💖");
+    });
+  });
+</script>
+
 </body>
+  
 </html>
+
 
 
 
